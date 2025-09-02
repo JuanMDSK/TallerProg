@@ -2251,6 +2251,7 @@ GameObject:
   - component: {fileID: 586833371}
   - component: {fileID: 586833370}
   - component: {fileID: 586833373}
+  - component: {fileID: 586833374}
   m_Layer: 0
   m_Name: Trampas
   m_TagString: Untagged
@@ -2752,6 +2753,18 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &586833374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586833367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f319573801d1744a6d424b7ef97cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &603444600
 GameObject:
   m_ObjectHideFlags: 0
@@ -21417,6 +21430,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6176787615481303844, guid: a3879484d58e7e84aae7907b2f321e29, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176787615481303844, guid: a3879484d58e7e84aae7907b2f321e29, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6582747259845169099, guid: a3879484d58e7e84aae7907b2f321e29, type: 3}
