@@ -3,5 +3,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private int _
+    private int _puntos ;
+
 }
