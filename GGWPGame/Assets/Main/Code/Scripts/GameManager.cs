@@ -45,11 +45,20 @@ public class GameManager : MonoBehaviour
     public void AddPoint()
     {
         points++;
+
+        points++;
+
+        // Si ya llegaste a 10 o más puntos, el obstáculo desaparece
+        if (points >= 10 && Obstaculo != null)
+        {
+            Destroy(Obstaculo);
+        }
     }
 
     public void AddLife(int amount)
     {
         life += amount;
+
     }
 
     public void TakeDamage(int amount)
@@ -70,4 +79,35 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public GameObject Obstaculo; // arrastra aquí el obstáculo desde la escena
+
+    [Header("Llave y Puerta")]
+    public bool hasKey = false;        // estado de la llave
+    public GameObject door;            // arrastra aquí la puerta
+    public GameObject winPanel;        // panel de victoria (UI)
+
+    public void CollectKey()
+    {
+        hasKey = true;
+
+        // Mostrar en consola (opcional)
+        Debug.Log("¡Has recogido la llave!");
+
+        // Activar la puerta cuando consigues la llave
+        if (door != null)
+            door.SetActive(true);
+    }
+
+    public void WinGame()
+    {
+        if (winPanel != null)
+            winPanel.SetActive(true);
+
+        Time.timeScale = 0f; // pausa el juego
+        Debug.Log("¡GANASTE!");
+    }
+
+
+
 }
