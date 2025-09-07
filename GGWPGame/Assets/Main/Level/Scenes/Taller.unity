@@ -7241,7 +7241,7 @@ GameObject:
   - component: {fileID: 1334537524}
   - component: {fileID: 1334537523}
   m_Layer: 0
-  m_Name: GameManagerEmpty
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25695,16 +25695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf59c153837516045a4a4ad76d056515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 8
-  jumpHorizontalMultiplier: 0.6
-  groundCheck: {fileID: 0}
-  groundCheckRadius: 0.12
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  moveSpeed: 10
 --- !u!1001 &5883962242517377663
 PrefabInstance:
   m_ObjectHideFlags: 0

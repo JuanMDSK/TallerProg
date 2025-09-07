@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MuslitoVida : MonoBehaviour
 {
-    public int amount = 1; // Cuánta vida suma
+    public int amount = 1; 
 
     void OnTriggerEnter2D(Collider2D other)
     {

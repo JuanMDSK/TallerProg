@@ -7,7 +7,7 @@ public class LlaveController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.CollectKey();
-            Destroy(gameObject); // la llave desaparece al recogerla
+            Destroy(gameObject); 
         }
     }
 }

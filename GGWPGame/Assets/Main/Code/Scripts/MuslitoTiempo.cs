@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MuslitoTiempo : MonoBehaviour
 {
-    public float amount = 5f; // Cuántos segundos suma
+    public float amount = 5f; 
 
     void OnTriggerEnter2D(Collider2D other)
     {

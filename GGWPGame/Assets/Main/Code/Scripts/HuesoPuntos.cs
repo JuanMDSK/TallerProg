@@ -7,7 +7,7 @@ public class HuesoPuntos : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.AddPoint();
-            Destroy(gameObject); // Desaparece al recogerlo
+            Destroy(gameObject); 
         }
     }
 }

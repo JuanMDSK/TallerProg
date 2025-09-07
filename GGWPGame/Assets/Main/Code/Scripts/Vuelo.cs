@@ -21,10 +21,10 @@ public class Vuelo : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        // Movimiento lateral (flechas o A/D)
+        
         inputX = Input.GetAxisRaw("Horizontal");
 
-        // Impulso hacia arriba al presionar Espacio
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
@@ -36,7 +36,7 @@ public class Vuelo : MonoBehaviour
     [System.Obsolete]
     void FixedUpdate()
     {
-        // Movimiento horizontal estable
+        
         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
     }
 }
