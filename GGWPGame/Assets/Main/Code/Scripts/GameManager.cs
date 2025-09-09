@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI timeText;
 
     [Header("Obstáculo")]
-    [SerializeField] private GameObject Obstaculo; 
+    [SerializeField]
+    private GameObject Obstaculo; 
 
     [Header("Llave y Puerta")]
     public bool hasKey = false; 

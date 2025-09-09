@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class TrampaController : MonoBehaviour
 {
-    public int damage = 1; 
+    [SerializeField] 
+    private int damage = 1; 
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

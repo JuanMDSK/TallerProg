@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class MuslitoTiempo : MonoBehaviour
 {
-    public float amount = 5f; 
+    [SerializeField]
+    private float amount = 5f; 
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
