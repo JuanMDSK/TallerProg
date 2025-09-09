@@ -7788,7 +7788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  life: 3
+  life: 1
   timeLeft: 60
   pointsText: {fileID: 1005102491}
   lifeText: {fileID: 1178399118}
@@ -26802,8 +26802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  JumpForce: 6
-  inputX: 0
+  jumpForce: 8
 --- !u!114 &5775385649602325145
 MonoBehaviour:
   m_ObjectHideFlags: 0
