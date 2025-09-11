@@ -118,4 +118,31 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f; 
         Debug.Log("¡GANASTE!");
     }
+
+    public void EstadoDelJuego(string estado)
+
+    {
+        switch (estado)
+        {
+            case "play":
+                Time.timeScale = 1;
+            
+            case "pause":
+                Time.timeScale = 0;
+
+
+
+
+
+
+
+                break;
+
+             
+
+
+
+
+        }
+    }
 }
