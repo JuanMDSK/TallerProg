@@ -124,19 +124,32 @@ public class GameManager : MonoBehaviour
     {
         switch (estado)
         {
-            case "play":
-                Time.timeScale = 1;
-            
-            case "pause":
-                Time.timeScale = 0;
-
-
-
-
-
-
-
+            case "Play":
+                Time.timeScale = 1; 
                 break;
+            case "Pause":
+                Time.timeScale = 0;
+                break;
+            case "Ganaste":
+                break;
+            case "Perdiste":
+                break;
+            case "salir":
+                Application.Quit();
+                break;
+
+
+        
+            
+
+
+
+
+
+
+
+
+               
 
              
 

@@ -26,13 +26,13 @@ public class Vuelo : MonoBehaviour
        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
 
     void FixedUpdate()
     {
        
-        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(inputX * moveSpeed, rb.linearVelocity.y);
     }
 }
