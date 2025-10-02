@@ -34,4 +34,6 @@ public class UIManager : MonoBehaviour
         edad = int.Parse(respuestaInput.textComponent.text);
     }
 
+
+
 }

@@ -140,7 +140,11 @@ public class GameManager : MonoBehaviour
 
 
         
-            
+   
+        
+    
+
+        
 
 
 
