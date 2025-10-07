@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
                 if (pausePanel != null) pausePanel.SetActive(false);
                 if (winPanel != null) winPanel.SetActive(false);
                 if (losePanel != null) losePanel.SetActive(false);
-                if (pauseButton != null) pauseButton.SetActive(true); 
+                if (pauseButton != null) pauseButton.SetActive(true);
                 break;
 
             case "Pause":
