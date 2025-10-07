@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject pauseButton;
+
+
 
     [Header("Llave")]
     public bool hasKey = false;
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
             UIKokoros.instance.UpdateTimeUI(timeLeft);
         }
 
-        // pausa con ESC
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (currentState == "Pause") ResumeGame();
@@ -67,7 +70,7 @@ public class GameManager : MonoBehaviour
         if (timeText != null) timeText.text = "Tiempo: " + Mathf.Round(timeLeft);
     }
 
-    // --- Control de puntos ---
+    
     public void AddPoint()
     {
         points++;
@@ -79,7 +82,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // --- Control de vida ---
+ 
     public void AddLife(int amount)
     {
         life += amount;
@@ -97,14 +100,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // --- Tiempo ---
+   
     public void AddTime(float amount)
     {
         timeLeft += amount;
         UIKokoros.instance.UpdateTimeUI(timeLeft);
     }
 
-    // --- Llave y puerta ---
+  
     public void CollectKey()
     {
         hasKey = true;
@@ -121,7 +124,7 @@ public class GameManager : MonoBehaviour
         SetGameState("Lose");
     }
 
-    // --- Estados ---
+
     public void SetGameState(string state)
     {
         currentState = state;
@@ -133,21 +136,26 @@ public class GameManager : MonoBehaviour
                 if (pausePanel != null) pausePanel.SetActive(false);
                 if (winPanel != null) winPanel.SetActive(false);
                 if (losePanel != null) losePanel.SetActive(false);
+                if (pauseButton != null) pauseButton.SetActive(true); 
                 break;
 
             case "Pause":
                 Time.timeScale = 0;
                 if (pausePanel != null) pausePanel.SetActive(true);
+                if (pauseButton != null) pauseButton.SetActive(false); 
                 break;
+
 
             case "Win":
                 Time.timeScale = 0;
                 if (winPanel != null) winPanel.SetActive(true);
+                if (pauseButton != null) pauseButton.SetActive(false);
                 break;
 
             case "Lose":
                 Time.timeScale = 0;
                 if (losePanel != null) losePanel.SetActive(true);
+                if (pauseButton != null) pauseButton.SetActive(false);
                 break;
 
             case "Exit":
@@ -156,7 +164,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // --- Acciones desde botones ---
+
+
     public void PauseGame() => SetGameState("Pause");
     public void ResumeGame() => SetGameState("Play");
 
@@ -171,7 +180,7 @@ public class GameManager : MonoBehaviour
         SetGameState("Exit");
     }
 }
-//borra todas las notas
+
 
 
 
