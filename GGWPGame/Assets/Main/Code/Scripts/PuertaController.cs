@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuertaController : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class PuertaController : MonoBehaviour
     {
         if (other.CompareTag("Player") && GameManager.instance.hasKey)
         {
-            GameManager.instance.WinGame();
+            SceneManager.LoadScene(2);
         }
     }
 }

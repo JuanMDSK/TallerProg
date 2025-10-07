@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
             {
-                LoseGame();
+                SceneManager.LoadScene(3);
             }
 
             UIKokoros.instance.UpdateTimeUI(timeLeft);
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
         if (life <= 0)
         {
-            LoseGame();
+            SceneManager.LoadScene(3);
         }
     }
 
@@ -160,6 +160,13 @@ public class GameManager : MonoBehaviour
 
             case "Exit":
                 Application.Quit();
+                UnityEditor.EditorApplication.isPlaying = false;    
+                break;
+
+            case "Play2":
+
+                SceneManager.LoadScene(1);
+                Time.timeScale = 1;
                 break;
         }
     }
