@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         SetGameState("Exit");
     }
 }
-
+//borra todas las notas
 
 
 
