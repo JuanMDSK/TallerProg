@@ -1,165 +1,198 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-   
     public static GameManager instance;
 
     [Header("Valores del juego")]
-    [SerializeField] 
-    private int points = 0;   
-    
-    [SerializeField] 
-    private int life = 3;   
-    
-    [SerializeField]
-    private float timeLeft = 60f;  
+    [SerializeField] private int points = 0;
+    [SerializeField] private int life = 5;
+    [SerializeField] private float timeLeft = 60f;
 
-    [Header("UI")]
-    [SerializeField] 
-    private TextMeshProUGUI pointsText;
+    [Header("UI (referencias del texto)")]
+    [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private TextMeshProUGUI lifeText;
+    [SerializeField] private TextMeshProUGUI timeText;
 
-    [SerializeField] 
-    private TextMeshProUGUI lifeText;
+    [Header("Objetos del juego")]
+    [SerializeField] private GameObject obstaculo;
+    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject pausePanel;
 
-    [SerializeField] 
-    private TextMeshProUGUI timeText;
+    [Header("Llave")]
+    public bool hasKey = false;
 
-    [Header("Obstáculo")]
-    [SerializeField]
-    private GameObject Obstaculo; 
-
-    [Header("Llave y Puerta")]
-    public bool hasKey = false; 
-    
-    [SerializeField]
-    private GameObject door;      
-
-    [SerializeField] 
-    private GameObject winPanel; 
+    private string currentState = "Play";
 
     void Awake()
     {
         if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        UIKokoros.instance.UpdateHeartsUI(life);
+        UIKokoros.instance.UpdatePointsUI(points);
+        UIKokoros.instance.UpdateTimeUI(timeLeft);
+        SetGameState("Play");
     }
 
     void Update()
     {
-      
-        timeLeft -= Time.deltaTime;
-        if (timeLeft <= 0)
+        if (currentState == "Play")
         {
-            RestartGame();
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
+            {
+                LoseGame();
+            }
+
+            UIKokoros.instance.UpdateTimeUI(timeLeft);
         }
 
-       
-        if (pointsText != null)
-            pointsText.text = "Puntos: " + points;
+        // pausa con ESC
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentState == "Pause") ResumeGame();
+            else if (currentState == "Play") PauseGame();
+        }
 
-        if (lifeText != null)
-            lifeText.text = "Vida: " + life;
-
-        if (timeText != null)
-            timeText.text = "Tiempo: " + Mathf.Round(timeLeft);
+        if (pointsText != null) pointsText.text = "Puntos: " + points;
+        if (lifeText != null) lifeText.text = "Vida: " + life;
+        if (timeText != null) timeText.text = "Tiempo: " + Mathf.Round(timeLeft);
     }
 
-   
+    // --- Control de puntos ---
     public void AddPoint()
     {
         points++;
+        UIKokoros.instance.UpdatePointsUI(points);
 
-        
-        if (points >= 5 && Obstaculo != null)
+        if (points >= 5 && obstaculo != null)
         {
-            Destroy(Obstaculo);
+            Destroy(obstaculo);
         }
     }
 
+    // --- Control de vida ---
     public void AddLife(int amount)
     {
         life += amount;
+        UIKokoros.instance.UpdateHeartsUI(life);
     }
 
     public void TakeDamage(int amount)
     {
         life -= amount;
+        UIKokoros.instance.UpdateHeartsUI(life);
+
         if (life <= 0)
         {
-            RestartGame();
+            LoseGame();
         }
     }
 
+    // --- Tiempo ---
     public void AddTime(float amount)
     {
         timeLeft += amount;
+        UIKokoros.instance.UpdateTimeUI(timeLeft);
     }
 
-    void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
+    // --- Llave y puerta ---
     public void CollectKey()
     {
         hasKey = true;
-        Debug.Log("¡Has recogido la llave!");
-
-        if (door != null)
-            door.SetActive(true);
+        if (door != null) door.SetActive(true);
     }
 
     public void WinGame()
     {
-        if (winPanel != null)
-            winPanel.SetActive(true);
-
-        Time.timeScale = 0f; 
-        Debug.Log("¡GANASTE!");
+        SetGameState("Win");
     }
 
-    public void EstadoDelJuego(string estado)
-
+    public void LoseGame()
     {
-        switch (estado)
+        SetGameState("Lose");
+    }
+
+    // --- Estados ---
+    public void SetGameState(string state)
+    {
+        currentState = state;
+
+        switch (state)
         {
             case "Play":
-                Time.timeScale = 1; 
+                Time.timeScale = 1;
+                if (pausePanel != null) pausePanel.SetActive(false);
+                if (winPanel != null) winPanel.SetActive(false);
+                if (losePanel != null) losePanel.SetActive(false);
                 break;
+
             case "Pause":
                 Time.timeScale = 0;
+                if (pausePanel != null) pausePanel.SetActive(true);
                 break;
-            case "Ganaste":
+
+            case "Win":
+                Time.timeScale = 0;
+                if (winPanel != null) winPanel.SetActive(true);
                 break;
-            case "Perdiste":
+
+            case "Lose":
+                Time.timeScale = 0;
+                if (losePanel != null) losePanel.SetActive(true);
                 break;
-            case "salir":
+
+            case "Exit":
                 Application.Quit();
                 break;
-
-
-        
-   
-        
-    
-
-        
-
-
-
-
-
-
-
-
-               
-
-             
-
-
-
-
         }
     }
+
+    // --- Acciones desde botones ---
+    public void PauseGame() => SetGameState("Pause");
+    public void ResumeGame() => SetGameState("Play");
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ExitGame()
+    {
+        SetGameState("Exit");
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

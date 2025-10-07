@@ -1,28 +1,46 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIKokoros : MonoBehaviour
 {
-    public static UIKokoros instance;
+    public static UIKokoros instance; 
 
     [Header("Corazones UI")]
-    [SerializeField] private Image[] hearts; // Arrastras 5 imágenes de corazones
+    [SerializeField] private Image[] hearts; 
+
+    [Header("Texto UI")]
+    [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private TextMeshProUGUI timeText;
 
     void Awake()
     {
         if (instance == null) instance = this;
     }
 
-    // Actualiza los corazones
+    
     public void UpdateHeartsUI(int life)
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < life)
-                hearts[i].enabled = true;  // Activo los corazones hasta el número de vida
-            else
-                hearts[i].enabled = false; // Los demás se apagan
+            
+            hearts[i].enabled = i < life;
         }
     }
+
+    
+    public void UpdatePointsUI(int points)
+    {
+        if (pointsText != null)
+            pointsText.text = "Puntos: " + points;
+    }
+
+   
+    public void UpdateTimeUI(float timeLeft)
+    {
+        if (timeText != null)
+            timeText.text = "Tiempo: " + Mathf.Round(timeLeft);
+    }
 }
+
 
